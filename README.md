@@ -14,6 +14,9 @@ The manufacturer of the boat may not change. The owner may, in case it is purcha
 
 ## Deploying to the Sandbox
 
+You'll need to have installed the daml sdk; instructions how to do so are [here](https://docs.daml.com/getting-started/installation.html). In particular, make sure that the `daml` shell command is working as expected.
+
+
 `cd` into the project directory (where the `daml.yaml` resides) and then 
 ```bash
 daml start
