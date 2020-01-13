@@ -1,0 +1,13 @@
+sdk-version: 0.13.41
+name: boat
+source: daml
+scenario: Main:test
+parties:
+  - Larry
+  - Feadship
+  - Shipper
+  - USCG
+version: 0.0.1
+dependencies:
+  - daml-prim
+  - daml-stdlib

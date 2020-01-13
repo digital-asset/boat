@@ -1,0 +1,100 @@
+daml 1.2 
+module Main where 
+
+template Boat 
+  with
+    manufacturer: Party
+    owner: Party
+    custodian: Party
+    name: Text 
+    coastGuard: Party 
+  where
+    signatory manufacturer, owner, custodian -- Obligation 
+
+    observer coastGuard
+
+    controller owner can
+      TransferOwnership: ContractId TransferProposal
+        with newOwner: Party
+        do 
+          create TransferProposal 
+            with 
+              boat = this
+              newOwner 
+
+      TransferCustody: ContractId CustodyProposal
+        with newCustodian: Party
+        do 
+          create CustodyProposal 
+            with 
+              boat = this 
+              newCustodian
+
+    controller custodian can 
+      ClaimDelivery: ContractId CustodyProposal
+        do 
+          create CustodyProposal
+            with 
+              boat = this
+              newCustodian = owner
+
+template CustodyProposal
+  with 
+    boat: Boat 
+    newCustodian: Party 
+  where 
+    signatory boat.owner, boat.custodian, boat.manufacturer
+
+    controller newCustodian can 
+      AcceptCustody: ContractId Boat 
+        do 
+          create boat with custodian = newCustodian
+
+template TransferProposal
+  with
+    boat: Boat
+    newOwner: Party 
+  where 
+    signatory boat.manufacturer, boat.owner, boat.custodian
+
+    controller newOwner can
+      AcceptOwnership: ContractId Boat
+        do 
+          create boat with owner = newOwner 
+
+test = scenario do 
+  feadship <- getParty "Feadship"
+  larry <- getParty "Larry"
+  shipper <- getParty "Shipper"
+  coastGuard <- getParty "USCG"
+
+  boat <- submit feadship do 
+    create Boat 
+      with 
+        manufacturer = feadship 
+        owner = feadship 
+        custodian = feadship 
+        name = "Musashi"
+        coastGuard
+
+  prop <- submit feadship do 
+    exercise boat TransferOwnership
+      with newOwner = larry
+
+  boat <- submit larry do 
+    exercise prop AcceptOwnership
+
+  prop <- submit larry do
+    exercise boat TransferCustody
+      with newCustodian = shipper 
+
+  boat <- submit shipper do
+    exercise prop AcceptCustody
+
+  prop <- submit shipper do
+    exercise boat ClaimDelivery
+
+  submit larry do 
+    exercise prop AcceptCustody
+
+  return ()
