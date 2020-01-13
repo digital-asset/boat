@@ -1,6 +1,6 @@
 # Sailboat in DAML
 
-This is a tutorial example, mostly spelled out in, `daml/Main.daml` of how one might represent the manufacture, ownership, custody, and oversight of a sailboat. 
+This is a tutorial example, mostly spelled out in `daml/Main.daml`, of how one might represent the manufacture, ownership, custody, and oversight of a sailboat. 
 
 The participants on a `Boat` contract are:
 1. Manufacturer: the party which produced the boat.
