@@ -6,7 +6,7 @@ The participants on a `Boat` contract are:
 1. Manufacturer: the party which produced the boat.
 2. Owner: the party who owns the boat.
 3. Custodian: the party who currently has posession of the boat.
-4. Coast Guard: has access to all Boat contracts, but they have neither rights nor responsibilities
+4. Coast Guard: has access to all Boat contracts, but they have neither rights nor responsibilities.
 
 All of these parties are signatories on the Boat contract, as they all have some sort of liability or responsibility for the boat. 
 
