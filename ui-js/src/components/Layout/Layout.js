@@ -6,6 +6,10 @@ import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import { useLayoutState } from "../../context/LayoutContext";
 import Report from "../../pages/report/Report";
+import Boats from "../../pages/boats/Boats";
+import CustodyProposals from "../../pages/custodytransfer/CustodyTransfer";
+import OwnerProposals from "../../pages/ownertransfer/OwnerTransfer";
+import ManufacturerRole from "../../pages/manufacturer/Manufacturer";
 import DamlLedger from "@daml/react";
 import { useUserState } from "../../context/UserContext";
 import Default from "../../pages/default/Default";
@@ -31,6 +35,10 @@ function Layout() {
               <Switch>
                 <Route path="/app/default" component={Default} />
                 <Route path="/app/report" component={Report} />
+                <Route path="/app/boats" component={Boats} />
+                <Route path="/app/custodytransfer" component={CustodyProposals} />
+                <Route path="/app/ownertransfer" component={OwnerProposals} />
+                <Route path="/app/manufacturer" component={ManufacturerRole} />
               </Switch>
             </div>
           </>

@@ -62,9 +62,33 @@ function Sidebar({ location }) {
           isSidebarOpened={isSidebarOpened}
         />
         <SidebarLink
-          key="Report"
-          label="Report"
-          path="/app/report"
+          key="Manufacturer"
+          label="Manufacturer"
+          path="/app/manufacturer"
+          icon={(<Home />)}
+          location={location}
+          isSidebarOpened={isSidebarOpened}
+        />
+        <SidebarLink
+          key="Boats"
+          label="Boats"
+          path="/app/boats"
+          icon={(<ListIcon />)}
+          location={location}
+          isSidebarOpened={isSidebarOpened}
+        />
+        <SidebarLink
+          key="OwnerTransfers"
+          label="Ownership Transfers"
+          path="/app/ownertransfer"
+          icon={(<ListIcon />)}
+          location={location}
+          isSidebarOpened={isSidebarOpened}
+        />
+        <SidebarLink
+          key="CustodyTransfers"
+          label="Custody Transfers"
+          path="/app/custodytransfer"
           icon={(<ListIcon />)}
           location={location}
           isSidebarOpened={isSidebarOpened}

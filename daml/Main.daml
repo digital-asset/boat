@@ -32,6 +32,12 @@ template Boat
               boat = this 
               newCustodian
 
+      Rename: ContractId Boat
+        with 
+          newName: Text
+        do 
+          create this with name = newName
+
     controller custodian can 
       ClaimDelivery: ContractId CustodyProposal
         do 
@@ -52,6 +58,10 @@ template CustodyProposal
         do 
           create boat with custodian = newCustodian
 
+      RejectCustody: ContractId Boat
+        do 
+          create boat 
+
 template TransferProposal
   with
     boat: Boat
@@ -63,6 +73,31 @@ template TransferProposal
       AcceptOwnership: ContractId Boat
         do 
           create boat with owner = newOwner 
+        
+      RejectOwnership: ContractId Boat
+        do
+          create boat 
+
+template ManufacturerRole
+  with 
+    manufacturer: Party
+    coastGuard: Party 
+    operator: Party 
+  where 
+    signatory operator
+    observer coastGuard 
+
+    controller manufacturer can 
+      nonconsuming Manufacture: ContractId Boat
+        with 
+          name: Text
+        do 
+          create Boat with 
+            manufacturer
+            owner = manufacturer
+            custodian = manufacturer
+            name
+            coastGuard
 
 test = scenario do 
   feadship <- getParty "Feadship"
