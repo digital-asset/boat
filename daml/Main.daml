@@ -15,7 +15,8 @@ template Boat
 
     controller owner can
       TransferOwnership: ContractId TransferProposal
-        with newOwner: Party
+        with 
+          newOwner: Party
         do 
           create TransferProposal 
             with 
@@ -23,7 +24,8 @@ template Boat
               newOwner 
 
       TransferCustody: ContractId CustodyProposal
-        with newCustodian: Party
+        with 
+          newCustodian: Party
         do 
           create CustodyProposal 
             with 

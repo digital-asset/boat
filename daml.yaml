@@ -1,13 +1,16 @@
-sdk-version: 0.13.41
+sdk-version: 0.13.55
 name: boat
 source: daml
-scenario: Main:test
 parties:
   - Larry
   - Feadship
   - Shipper
   - USCG
 version: 0.0.1
+sandbox-options:
+  - --ledgerid=boat
+  - -w
 dependencies:
   - daml-prim
   - daml-stdlib
+  - daml-script

@@ -1,2 +1,6 @@
 .daml
 *.log
+daml2ts
+node_modules
+yarn.lock
+ui-js/build
